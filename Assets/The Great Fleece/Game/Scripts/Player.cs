@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
 {
     //create variable to storage navmeshagent
     private NavMeshAgent _navMeshAgent;
+    private Animator _animator;
     
     void Start()
     {
         //assign navmeshagent
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -25,5 +27,14 @@ public class Player : MonoBehaviour
                 _navMeshAgent.SetDestination(hit.point);
             }
         }
+        if(_navMeshAgent.remainingDistance < 0.5f)
+        {
+            _animator.SetBool("Walk", false);
+        }
+        else
+        {
+            _animator.SetBool("Walk", true);
+        }
+        
     }
 }
