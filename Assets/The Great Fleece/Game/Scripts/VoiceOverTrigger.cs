@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eyes : MonoBehaviour
+public class VoiceOverTrigger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _gameoverCutscene;
+    private AudioClip _audioClip;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            _gameoverCutscene.SetActive(true);
+            AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position);
         }
     }
 }

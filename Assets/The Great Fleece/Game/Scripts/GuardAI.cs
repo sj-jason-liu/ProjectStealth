@@ -12,11 +12,14 @@ public class GuardAI : MonoBehaviour
     [SerializeField]
     private List<Transform> _wayPoints;
 
+    private Vector3 _coinPosition;
+
     [SerializeField]
     private int _currentTarget;
 
     private bool _isReversing;
     private bool _targetReached;
+    private bool _coinDetected;
     
    void Start()
     {
@@ -30,12 +33,27 @@ public class GuardAI : MonoBehaviour
 
     void Update()
     {
+        
         if(_wayPoints.Count > 0 && _wayPoints[_currentTarget] != null) //null check debug
         {
-            if (_targetReached == false)
+            if(_agent.velocity.x != 0 || _agent.velocity.z != 0)
+            {
+                _anim.SetBool("Walk", true);
+            }
+            else
+            {
+                _anim.SetBool("Walk", false);
+            }
+
+            if(_coinDetected)
+            {
+                _agent.SetDestination(_coinPosition);
+            }
+            else if (_targetReached == false && !_coinDetected)
             {
                 _agent.SetDestination(_wayPoints[_currentTarget].position);
             }
+
             float distance = Vector3.Distance(transform.position, _wayPoints[_currentTarget].position);
             if (distance < 1f)
             {
@@ -80,19 +98,25 @@ public class GuardAI : MonoBehaviour
                         _isReversing = false;
                     }
                 }
-                else
-                {
-                    _anim.SetBool("Walk", false); //always idle for 1-waypoint guard
-                }
             }
         }
     }
 
     IEnumerator WaitBeforeMoving()
     {
-        _anim.SetBool("Walk", false);
         yield return new WaitForSeconds(Random.Range(2f, 5f));
         _targetReached = false;
-        _anim.SetBool("Walk", true);
+    }
+
+    public void NoticedCoin(Vector3 _coinPos)
+    {
+        _coinPosition = _coinPos;
+        _coinDetected = true;
+        Invoke("Disalarm", 8f);
+    }
+
+    void Disalarm()
+    {
+        _coinDetected = false;
     }
 }
