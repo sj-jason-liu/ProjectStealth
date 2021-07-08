@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class WinStateActivation : MonoBehaviour
 {
-    //ontriggerenter
-    //check darren
-    //check has card
-    //trigger win cutscene
-    //or print out must has key
     [SerializeField]
     private GameObject _winCutscene;
 

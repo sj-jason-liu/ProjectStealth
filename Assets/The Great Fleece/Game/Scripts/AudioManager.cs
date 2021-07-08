@@ -24,10 +24,17 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource _voiceOver;
+    [SerializeField]
+    private AudioSource _music;
 
     public void PlayVoiceOver(AudioClip clipToPlay)
     {
         _voiceOver.clip = clipToPlay;
         _voiceOver.Play();
+    }
+
+    public void PlayMusic()
+    {
+        _music.Play();
     }
 }
