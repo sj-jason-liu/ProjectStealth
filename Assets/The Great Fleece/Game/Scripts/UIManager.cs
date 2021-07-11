@@ -25,8 +25,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        SceneManager.LoadScene("Main");
     }
 
     public void QuitGame()

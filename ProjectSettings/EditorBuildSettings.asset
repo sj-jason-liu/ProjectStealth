@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/The Great Fleece/Game/_Scenes/Main_Menu.unity
+    guid: 0ffc7377965e2ac4fa86693b1477e58e
+  - enabled: 1
+    path: Assets/The Great Fleece/Game/_Scenes/LoadingScreen.unity
+    guid: 2efda55cfddac3240804a1bf3d76bad6
+  - enabled: 1
     path: Assets/The Great Fleece/Game/_Scenes/Main.unity
     guid: 9b026484f43ebc14f85fe756ec990657
   m_configObjects: {}
