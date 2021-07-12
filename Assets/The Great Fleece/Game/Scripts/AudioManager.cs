@@ -37,4 +37,9 @@ public class AudioManager : MonoBehaviour
     {
         _music.Play();
     }
+
+    public void StopMusic()
+    {
+        _music.Stop();
+    }
 }

@@ -13,6 +13,7 @@ public class WinStateActivation : MonoBehaviour
         {
             if(GameManager.Instance.HasCard == true)
             {
+                AudioManager.Instance.StopMusic();
                 _winCutscene.SetActive(true);
             }
             else
